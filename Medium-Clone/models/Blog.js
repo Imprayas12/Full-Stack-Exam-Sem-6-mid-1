@@ -5,9 +5,6 @@ const schema = new mongoose.Schema({
         required: true,
         maxLength: 25
     },
-    date: {
-        type: Number,
-    },
     Description: {
         type: String,
         required: [true, "You must provide a Description!!"],
