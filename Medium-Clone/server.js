@@ -13,10 +13,10 @@ const methodOverride = require('method-override')
 app.use(methodOverride("_method"))
 const PORT = 5000
 
-
+var items = []
 app.get('/',async (req,res) => {
-    const items = await Blog.find({Title: {$regex: ``}});
-    res.render('index',{items});
+    items = await Blog.find({Title: {$regex: ``}});
+    res.render('index', {items});
 })
 
 app.get('/new',(req,res) => {
