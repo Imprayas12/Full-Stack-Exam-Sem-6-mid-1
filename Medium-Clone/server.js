@@ -9,11 +9,14 @@ mongoose.connect('mongodb://localhost:27017/blogsd')
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}));
+const methodOverride = require('method-override')
+app.use(methodOverride("_method"))
 const PORT = 5000
 
 
-app.get('/',(req,res) => {
-    res.render('index')
+app.get('/',async (req,res) => {
+    const items = await Blog.find({Title: {$regex: ``}});
+    res.render('index',{items});
 })
 
 app.get('/new',(req,res) => {
